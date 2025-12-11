@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/cyberpunk_black"
+    android:padding="16dp"
+    tools:context=".ListActivity">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:background="#1A1A1A">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="BLUETOOTH SCAN"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/cyberpunk_cyan"
+            android:fontFamily="monospace"
+            android:gravity="center"
+            android:shadowColor="@color/cyberpunk_cyan"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="15"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="⚡ Searching for servers... ⚡"
+            android:textSize="12sp"
+            android:textColor="@color/cyberpunk_yellow"
+            android:fontFamily="monospace"
+            android:gravity="center"
+            android:layout_marginTop="8dp"/>
+    </LinearLayout>
+
+    <!-- Espaciador -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="16dp"/>
+
+    <!-- Estado del escaneo -->
+    <TextView
+        android:id="@+id/textScanStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="[SCAN: ACTIVE]"
+        android:textSize="14sp"
+        android:textColor="@color/cyberpunk_magenta"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:padding="8dp"
+        android:shadowColor="@color/cyberpunk_magenta"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="8"/>
+
+    <!-- Lista de servidores -->
+    <ListView
+        android:id="@+id/listServers"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#0A0A0A"
+        android:padding="8dp"
+        android:divider="@color/cyberpunk_purple"
+        android:dividerHeight="2dp"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Botón volver -->
+    <Button
+        android:id="@+id/buttonBack"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="◀◀ BACK"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/cyberpunk_yellow"
+        android:fontFamily="monospace"
+        android:backgroundTint="@color/cyberpunk_dark_purple"
+        android:onClick="goBack"
+        android:layout_marginTop="16dp"
+        android:letterSpacing="0.15"/>
+
+</LinearLayout>

@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="cyberpunk_black">#0D0208</color>
+    <color name="cyberpunk_magenta">#FF006E</color>
+    <color name="cyberpunk_cyan">#00F5FF</color>
+    <color name="cyberpunk_purple">#8338EC</color>
+    <color name="cyberpunk_yellow">#FFBE0B</color>
+    <color name="cyberpunk_dark_purple">#3A0CA3</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B8B8B8</color>
+
+    <!-- Para efectos de sombra/glow -->
+    <color name="cyberpunk_magenta_transparent">#80FF006E</color>
+    <color name="cyberpunk_cyan_transparent">#8000F5FF</color>
 </resources>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@color/cyberpunk_black">
+
+    <TextView
+        android:id="@+id/textTurnStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="[TURN]"
+        android:textSize="20sp"
+        android:textColor="@color/cyberpunk_cyan"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:shadowColor="@color/cyberpunk_cyan"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="10"
+        android:padding="12dp" />
+
+    <GridLayout
+        android:id="@+id/grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:rowCount="3"
+        android:columnCount="3"
+        android:layout_marginTop="40dp">
+
+        <Button
+            android:id="@+id/b0"
+            style="@style/CyberButton" />
+        <Button
+            android:id="@+id/b1"
+            style="@style/CyberButton" />
+        <Button
+            android:id="@+id/b2"
+            style="@style/CyberButton" />
+
+        <Button
+            android:id="@+id/b3"
+            style="@style/CyberButton" />
+        <Button
+            android:id="@+id/b4"
+            style="@style/CyberButton" />
+        <Button
+            android:id="@+id/b5"
+            style="@style/CyberButton" />
+
+        <Button
+            android:id="@+id/b6"
+            style="@style/CyberButton" />
+        <Button
+            android:id="@+id/b7"
+            style="@style/CyberButton" />
+        <Button
+            android:id="@+id/b8"
+            style="@style/CyberButton" />
+
+    </GridLayout>
+
+    <Button
+        android:id="@+id/buttonReset"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="RESET"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/cyberpunk_magenta"
+        android:fontFamily="monospace"
+        android:backgroundTint="@color/cyberpunk_dark_purple"
+        android:layout_marginTop="32dp"
+        android:letterSpacing="0.20" />
+
+</LinearLayout>

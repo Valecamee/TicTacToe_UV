@@ -1,4 +1,4 @@
-package edu.univalle.tictactoe;
+package edu.univalle.tictactoe; // ⚠️ CAMBIA ESTO por tu package real
 
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_PERMISSION_CODE = 100;
     private Button buttonIniciar;
     private RadioButton radioButtonServidor;
+    private TextView textBtStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         // Referencias a las vistas
         buttonIniciar = findViewById(R.id.buttonIniciar);
         radioButtonServidor = findViewById(R.id.radioButtonServidor);
+        textBtStatus = findViewById(R.id.textBtStatus);
 
         // Obtener el adaptador Bluetooth
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -39,7 +42,9 @@ public class MainActivity extends AppCompatActivity {
         if (bluetoothAdapter == null) {
             Toast.makeText(this, R.string.bluetooth_no_soportado,
                     Toast.LENGTH_LONG).show();
-            finish(); // Cerrar la aplicación
+            textBtStatus.setText("[ERROR: NO BT SUPPORT]");
+            textBtStatus.setTextColor(getResources().getColor(R.color.cyberpunk_magenta, null));
+            finish();
         } else {
             // Verificar y solicitar permisos
             if (verificarPermisos()) {
@@ -91,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, R.string.permisos_necesarios,
                         Toast.LENGTH_SHORT).show();
+                textBtStatus.setText("[ERROR: PERMISSIONS DENIED]");
+                textBtStatus.setTextColor(getResources().getColor(R.color.cyberpunk_magenta, null));
             }
         }
     }
@@ -120,18 +127,36 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             Toast.makeText(this, R.string.bluetooth_no_habilitado,
                                     Toast.LENGTH_SHORT).show();
+                            textBtStatus.setText("[WARNING: BT DISABLED]");
+                            textBtStatus.setTextColor(getResources().getColor(R.color.cyberpunk_yellow, null));
                         }
                     });
 
     // Habilitar el botón Iniciar
     private void habilitarBotonIniciar() {
         buttonIniciar.setEnabled(true);
+
+        // Actualizar estado de Bluetooth
+        TextView textBtStatus = findViewById(R.id.textBtStatus);
+        textBtStatus.setText("[BT: ENABLED ⚡]");
+        textBtStatus.setTextColor(getResources().getColor(R.color.cyberpunk_cyan, null));
     }
 
-    // Método onClick del botón Iniciar
+    // Metodo onClick del botón Iniciar
     public void iniciarPartida(View view) {
-        // TODO: Aquí navegaremos a la siguiente actividad
-        Toast.makeText(this, "Botón funciona - próximo paso: navegación",
-                Toast.LENGTH_SHORT).show();
+        Intent intent;
+
+        if (radioButtonServidor.isChecked()) {
+            intent = new Intent(this, GameActivity.class);
+            intent.putExtra("role", "SERVER");
+            intent.putExtra("address", "SERVER");
+        } else {
+            intent = new Intent(this, ListActivity.class);
+        }
+
+        startActivity(intent);
     }
+
+
+
 }
