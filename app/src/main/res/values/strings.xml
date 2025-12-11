@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">TicTacToe UV</string>
+    <string name="titulo_app">TicTacToe UV</string>
+    <string name="selecciona_rol">Selecciona tu rol:</string>
+    <string name="rol_servidor">Servidor</string>
+    <string name="rol_cliente">Cliente</string>
+    <string name="boton_iniciar">Iniciar</string>
+
+    <!-- Mensajes -->
+    <string name="bluetooth_no_soportado">Este dispositivo no soporta Bluetooth</string>
+    <string name="bluetooth_habilitado">Bluetooth habilitado</string>
+    <string name="bluetooth_no_habilitado">Bluetooth no habilitado</string>
+    <string name="permisos_necesarios">Permisos necesarios no concedidos</string>
+</resources>
