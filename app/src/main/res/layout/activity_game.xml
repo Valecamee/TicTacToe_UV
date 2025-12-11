@@ -21,13 +21,20 @@
         android:shadowRadius="10"
         android:padding="12dp" />
 
+    <!-- Espaciador superior para centrar -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <!-- GridLayout centrado -->
     <GridLayout
         android:id="@+id/grid"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:rowCount="3"
         android:columnCount="3"
-        android:layout_marginTop="40dp">
+        android:layout_gravity="center">
 
         <Button
             android:id="@+id/b0"
@@ -61,17 +68,24 @@
 
     </GridLayout>
 
+    <!-- Espaciador inferior para centrar -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
     <Button
         android:id="@+id/buttonReset"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="RESET"
+        android:text="@string/reset"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="@color/cyberpunk_magenta"
         android:fontFamily="monospace"
         android:backgroundTint="@color/cyberpunk_dark_purple"
         android:layout_marginTop="32dp"
-        android:letterSpacing="0.20" />
+        android:letterSpacing="0.20"
+        android:onClick="onResetClicked" />
 
 </LinearLayout>

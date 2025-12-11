@@ -1,26 +1,36 @@
-package edu.univalle.tictactoe; // ⚠️ CAMBIA ESTO por tu package real
+package edu.univalle.tictactoe;
 
+import android.Manifest;
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.RequiresPermission;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
     private BluetoothAdapter bluetoothAdapter;
     private static final int REQUEST_PERMISSION_CODE = 100;
+
     private Button buttonIniciar;
     private RadioButton radioButtonServidor;
     private TextView textBtStatus;
@@ -30,32 +40,41 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Referencias a las vistas
         buttonIniciar = findViewById(R.id.buttonIniciar);
         radioButtonServidor = findViewById(R.id.radioButtonServidor);
+        EditText editRoomName = findViewById(R.id.editRoomName);
+
+        radioButtonServidor.setOnCheckedChangeListener((g, checked) -> {
+            if (checked) {
+                editRoomName.setVisibility(View.VISIBLE);
+            } else {
+                editRoomName.setVisibility(View.GONE);
+            }
+        });
+
+        if (radioButtonServidor.isChecked()) {
+            editRoomName.setVisibility(View.VISIBLE);
+        }
+
         textBtStatus = findViewById(R.id.textBtStatus);
 
-        // Obtener el adaptador Bluetooth
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
-        // Verificar si el dispositivo soporta Bluetooth
         if (bluetoothAdapter == null) {
-            Toast.makeText(this, R.string.bluetooth_no_soportado,
-                    Toast.LENGTH_LONG).show();
-            textBtStatus.setText("[ERROR: NO BT SUPPORT]");
-            textBtStatus.setTextColor(getResources().getColor(R.color.cyberpunk_magenta, null));
+            textBtStatus.setText(getString(R.string.bluetooth_no_soportado));
+            Toast.makeText(this, getString(R.string.bluetooth_no_soportado_toast), Toast.LENGTH_LONG).show();
             finish();
-        } else {
-            // Verificar y solicitar permisos
-            if (verificarPermisos()) {
-                habilitarBluetooth();
-            }
+            return;
+        }
+
+        if (verificarPermisos()) {
+            habilitarBluetooth();
         }
     }
 
-    // Método para verificar permisos
     private boolean verificarPermisos() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            // Android 12+ solo necesita permisos de Bluetooth
             if (ContextCompat.checkSelfPermission(this,
                     android.Manifest.permission.BLUETOOTH_CONNECT)
                     != PackageManager.PERMISSION_GRANTED ||
@@ -66,7 +85,19 @@ public class MainActivity extends AppCompatActivity {
                 ActivityCompat.requestPermissions(this,
                         new String[]{
                                 android.Manifest.permission.BLUETOOTH_CONNECT,
-                                android.Manifest.permission.BLUETOOTH_SCAN,
+                                android.Manifest.permission.BLUETOOTH_SCAN
+                        },
+                        REQUEST_PERMISSION_CODE);
+
+                return false;
+            }
+        } else {
+            // Android 11 y anteriores: necesitan ubicación para escanear Bluetooth
+            if (ContextCompat.checkSelfPermission(this,
+                    android.Manifest.permission.ACCESS_FINE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{
                                 android.Manifest.permission.ACCESS_FINE_LOCATION
                         },
                         REQUEST_PERMISSION_CODE);
@@ -76,87 +107,132 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    // Callback cuando el usuario responde a la solicitud de permisos
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         if (requestCode == REQUEST_PERMISSION_CODE) {
-            boolean todosOtorgados = true;
-            for (int resultado : grantResults) {
-                if (resultado != PackageManager.PERMISSION_GRANTED) {
-                    todosOtorgados = false;
+            boolean ok = true;
+
+            for (int r : grantResults) {
+                if (r != PackageManager.PERMISSION_GRANTED) {
+                    ok = false;
                     break;
                 }
             }
 
-            if (todosOtorgados) {
+            if (ok) {
                 habilitarBluetooth();
             } else {
-                Toast.makeText(this, R.string.permisos_necesarios,
-                        Toast.LENGTH_SHORT).show();
-                textBtStatus.setText("[ERROR: PERMISSIONS DENIED]");
-                textBtStatus.setTextColor(getResources().getColor(R.color.cyberpunk_magenta, null));
+                textBtStatus.setText(getString(R.string.permisos_necesarios));
+                Toast.makeText(this, getString(R.string.permisos_requeridos), Toast.LENGTH_SHORT).show();
             }
         }
     }
 
-    // Método para habilitar Bluetooth
     private void habilitarBluetooth() {
         if (!bluetoothAdapter.isEnabled()) {
-            Intent habilitarIntent = new Intent(
-                    BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            lanzadorBluetooth.launch(habilitarIntent);
+            Intent intent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            lanzadorBluetooth.launch(intent);
         } else {
-            Toast.makeText(this, R.string.bluetooth_habilitado,
-                    Toast.LENGTH_SHORT).show();
             habilitarBotonIniciar();
         }
     }
 
-    // Launcher para habilitar Bluetooth
     private final ActivityResultLauncher<Intent> lanzadorBluetooth =
             registerForActivityResult(
                     new ActivityResultContracts.StartActivityForResult(),
                     result -> {
                         if (result.getResultCode() == RESULT_OK) {
-                            Toast.makeText(this, R.string.bluetooth_habilitado,
-                                    Toast.LENGTH_SHORT).show();
                             habilitarBotonIniciar();
                         } else {
-                            Toast.makeText(this, R.string.bluetooth_no_habilitado,
-                                    Toast.LENGTH_SHORT).show();
-                            textBtStatus.setText("[WARNING: BT DISABLED]");
-                            textBtStatus.setTextColor(getResources().getColor(R.color.cyberpunk_yellow, null));
+                            textBtStatus.setText(getString(R.string.bluetooth_no_habilitado));
+                            Toast.makeText(this, getString(R.string.bluetooth_no_habilitado_toast), Toast.LENGTH_SHORT).show();
                         }
-                    });
+                    }
+            );
 
-    // Habilitar el botón Iniciar
+    private final ActivityResultLauncher<Intent> lanzadorDiscoverable =
+            registerForActivityResult(
+                    new ActivityResultContracts.StartActivityForResult(),
+                    result -> {
+                        if (result.getResultCode() >= 0) {
+                            // El dispositivo está descubrible, iniciar partida
+                            iniciarPartidaServidor();
+                        } else {
+                            textBtStatus.setText(getString(R.string.bluetooth_no_habilitado));
+                            Toast.makeText(this, getString(R.string.dispositivo_descubrible), Toast.LENGTH_LONG).show();
+                        }
+                    }
+            );
+
     private void habilitarBotonIniciar() {
         buttonIniciar.setEnabled(true);
-
-        // Actualizar estado de Bluetooth
-        TextView textBtStatus = findViewById(R.id.textBtStatus);
-        textBtStatus.setText("[BT: ENABLED ⚡]");
-        textBtStatus.setTextColor(getResources().getColor(R.color.cyberpunk_cyan, null));
+        textBtStatus.setText(getString(R.string.bt_enabled));
     }
 
-    // Metodo onClick del botón Iniciar
+    // --------------------------
+    //  CAMBIAR IDIOMA
+    // --------------------------
+    public void cambiarIdioma(View view) {
+        Locale localeActual = getResources().getConfiguration().locale;
+        Locale nuevoLocale;
+        
+        if (localeActual.getLanguage().equals("es")) {
+            nuevoLocale = Locale.ENGLISH;
+        } else {
+            nuevoLocale = new Locale("es");
+        }
+        
+        Locale.setDefault(nuevoLocale);
+        Configuration config = new Configuration();
+        config.locale = nuevoLocale;
+        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
+        
+        // Reiniciar la actividad para aplicar los cambios
+        recreate();
+    }
+
+    // --------------------------
+    //  BOTÓN INICIAR PARTIDA
+    // --------------------------
+    @RequiresPermission(Manifest.permission.BLUETOOTH_CONNECT)
     public void iniciarPartida(View view) {
-        Intent intent;
 
         if (radioButtonServidor.isChecked()) {
-            intent = new Intent(this, GameActivity.class);
-            intent.putExtra("role", "SERVER");
-            intent.putExtra("address", "SERVER");
-        } else {
-            intent = new Intent(this, ListActivity.class);
-        }
+            // Servidor: cambiar nombre y hacer descubrible
+            EditText editRoomName = findViewById(R.id.editRoomName);
+            String roomName = editRoomName.getText().toString().trim();
 
-        startActivity(intent);
+            if (roomName.isEmpty()) roomName = "TICTACTOE_ROOM_DEFAULT";
+
+            roomName = "TICTACTOE_ROOM_" + roomName;
+            bluetoothAdapter.setName(roomName);
+
+            // Hacer el dispositivo descubrible para que otros puedan encontrarlo
+            Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+            // Hacer descubrible por 300 segundos (5 minutos)
+            discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
+            lanzadorDiscoverable.launch(discoverableIntent);
+
+        } else {
+            // Cliente → va a ListActivity a ver salas
+            Intent intent = new Intent(this, ListActivity.class);
+            startActivity(intent);
+        }
     }
 
+    private void iniciarPartidaServidor() {
+        EditText editRoomName = findViewById(R.id.editRoomName);
+        String roomName = editRoomName.getText().toString().trim();
 
+        if (roomName.isEmpty()) roomName = "TICTACTOE_ROOM_DEFAULT";
+        roomName = "TICTACTOE_ROOM_" + roomName;
 
+        Intent intent = new Intent(this, GameActivity.class);
+        intent.putExtra("role", "SERVER");
+        intent.putExtra("roomName", roomName);
+        intent.putExtra("address", "SERVER");
+        startActivity(intent);
+    }
 }

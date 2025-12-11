@@ -23,4 +23,12 @@
         <item name="android:onClick">onCellClicked</item>
     </style>
 
+    <!-- Estilo para diálogos con la misma estética -->
+    <style name="CyberAlertDialog" parent="ThemeOverlay.AppCompat.Dialog.Alert">
+        <item name="android:textColorPrimary">@color/cyberpunk_cyan</item>
+        <item name="android:textColor">@color/cyberpunk_cyan</item>
+        <item name="android:background">@color/cyberpunk_black</item>
+        <item name="colorAccent">@color/cyberpunk_magenta</item>
+    </style>
+
 </resources>

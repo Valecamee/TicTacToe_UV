@@ -1,18 +1,72 @@
 <resources>
     <string name="app_name">TicTacToe UV</string>
-    <string name="titulo_app">TICTACTOE //UV</string>
-    <string name="subtitulo">CYBERPUNK EDITION</string>
-    <string name="selecciona_rol">⚡ SELECT MODE ⚡</string>
-    <string name="rol_servidor">▣ SERVER █ Host Session</string>
-    <string name="rol_cliente">▣ CLIENT █ Join Session</string>
-    <string name="boton_iniciar">▶▶ INITIALIZE ◀◀</string>
-    <string name="bluetooth_no_soportado">ERROR: BLUETOOTH NOT SUPPORTED</string>
-    <string name="bluetooth_habilitado">SYSTEM: BLUETOOTH ENABLED</string>
-    <string name="bluetooth_no_habilitado">WARNING: BLUETOOTH DISABLED</string>
-    <string name="permisos_necesarios">ERROR: PERMISSIONS DENIED</string>
-    <string name="scan_status_active">[SCAN: ACTIVE]</string>
-    <string name="scan_status_complete">[SCAN: COMPLETE]</string>
-    <string name="no_devices_found">NO DEVICES FOUND</string>
-    <string name="searching_servers">Searching for servers...</string>
-    <string name="button_back">BACK</string>
+    <string name="titulo_app">TicTacToe UV</string>
+    <string name="subtitulo">EDICION CYBERPUNK</string>
+    <string name="selecciona_rol">SELECCIONA MODO</string>
+    <string name="rol_servidor">SERVIDOR - Crear Sesion</string>
+    <string name="rol_cliente">CLIENTE - Unirse a Sesion</string>
+    <string name="boton_iniciar">INICIAR</string>
+    <string name="bluetooth_no_soportado">ERROR: BLUETOOTH NO SOPORTADO</string>
+    <string name="bluetooth_habilitado">SISTEMA: BLUETOOTH HABILITADO</string>
+    <string name="bluetooth_no_habilitado">ADVERTENCIA: BLUETOOTH DESHABILITADO</string>
+    <string name="permisos_necesarios">ERROR: PERMISOS DENEGADOS</string>
+    <string name="scan_status_active">[ESCANEO: ACTIVO]</string>
+    <string name="scan_status_complete">[ESCANEO: COMPLETO]</string>
+    <string name="no_devices_found">NO SE ENCONTRARON DISPOSITIVOS</string>
+    <string name="searching_servers">Buscando servidores...</string>
+    <string name="button_back">VOLVER</string>
+    <string name="nombre_sala">Nombre de la sala</string>
+    <string name="bt_checking">[BT: VERIFICANDO...]</string>
+    <string name="bt_enabled">[BT: HABILITADO]</string>
+    <string name="bluetooth_scan">ESCANEO BLUETOOTH</string>
+    <string name="tap_to_connect">TOCAR PARA CONECTAR</string>
+    <string name="reset">REINICIAR</string>
+    
+    <!-- GameActivity strings -->
+    <string name="server_mode_your_turn">[MODO SERVIDOR - TU TURNO]</string>
+    <string name="client_mode_waiting">[MODO CLIENTE - ESPERANDO]</string>
+    <string name="server_error_permiso">[ERROR SERVIDOR: PERMISO BT CONECTAR]</string>
+    <string name="server_waiting_client">[SERVIDOR: ESPERANDO CLIENTE...]</string>
+    <string name="client_connected">[CLIENTE CONECTADO]</string>
+    <string name="server_error">[ERROR SERVIDOR]</string>
+    <string name="client_error_permiso">[ERROR CLIENTE: PERMISO BT CONECTAR]</string>
+    <string name="client_connecting">[CLIENTE: CONECTANDO...]</string>
+    <string name="connected">[CONECTADO]</string>
+    <string name="connection_failed">[CONEXION FALLIDA]</string>
+    <string name="juego_reiniciado">[JUEGO REINICIADO]</string>
+    <string name="rematch_aceptado_start">[REVANCHA ACEPTADA - EMPEZAR!]</string>
+    <string name="disconnected">[DESCONECTADO]</string>
+    <string name="your_turn">[TU TURNO]</string>
+    <string name="send_error">[ERROR AL ENVIAR]</string>
+    <string name="waiting">[ESPERANDO...]</string>
+    <string name="start_your_turn">[EMPEZAR - TU TURNO]</string>
+    <string name="start_rival_turn">[EMPEZAR - TURNO RIVAL]</string>
+    <string name="rematch_solicitado_esperando">[REVANCHA SOLICITADA - ESPERANDO...]</string>
+    <string name="error_enviar_revancha">[ERROR AL ENVIAR REVANCHA]</string>
+    <string name="error_aceptar_revancha">[ERROR AL ACEPTAR REVANCHA]</string>
+    <string name="ganaste">GANASTE</string>
+    <string name="perdiste">PERDISTE</string>
+    <string name="empate">EMPATE</string>
+    <string name="fin_del_juego">FIN DEL JUEGO</string>
+    <string name="mensaje_ganaste">¡Felicidades! Has ganado la partida.</string>
+    <string name="mensaje_perdiste">Lo siento, has perdido la partida.</string>
+    <string name="mensaje_empate">¡Es un empate! Nadie ganó esta partida.</string>
+    <string name="revancha_o_salir">Revancha o salir?</string>
+    <string name="revancha">Revancha</string>
+    <string name="salir">Salir</string>
+    <string name="revancha_titulo">REVANCHA</string>
+    <string name="revancha_mensaje">El rival quiere revancha.\n¿Aceptar?</string>
+    <string name="aceptar">Aceptar</string>
+    
+    <!-- Toast messages -->
+    <string name="bluetooth_no_soportado_toast">Bluetooth no soportado</string>
+    <string name="permisos_requeridos">Permisos requeridos</string>
+    <string name="bluetooth_no_habilitado_toast">Bluetooth no habilitado</string>
+    <string name="dispositivo_descubrible">El dispositivo debe ser descubrible para que otros puedan encontrarlo</string>
+    <string name="permiso_requerido">Permiso requerido</string>
+    
+    <!-- Language selector -->
+    <string name="cambiar_idioma">EN</string>
+    <string name="language_english">English</string>
+    <string name="language_spanish">Español</string>
 </resources>

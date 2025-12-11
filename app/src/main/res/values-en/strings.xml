@@ -1,0 +1,73 @@
+<resources>
+    <string name="app_name">TicTacToe UV</string>
+    <string name="titulo_app">TicTacToe UV</string>
+    <string name="subtitulo">CYBERPUNK EDITION</string>
+    <string name="selecciona_rol">SELECT MODE</string>
+    <string name="rol_servidor">SERVER - Host Session</string>
+    <string name="rol_cliente">CLIENT - Join Session</string>
+    <string name="boton_iniciar">INITIALIZE</string>
+    <string name="bluetooth_no_soportado">ERROR: BLUETOOTH NOT SUPPORTED</string>
+    <string name="bluetooth_habilitado">SYSTEM: BLUETOOTH ENABLED</string>
+    <string name="bluetooth_no_habilitado">WARNING: BLUETOOTH DISABLED</string>
+    <string name="permisos_necesarios">ERROR: PERMISSIONS DENIED</string>
+    <string name="scan_status_active">[SCAN: ACTIVE]</string>
+    <string name="scan_status_complete">[SCAN: COMPLETE]</string>
+    <string name="no_devices_found">NO DEVICES FOUND</string>
+    <string name="searching_servers">Searching for servers...</string>
+    <string name="button_back">BACK</string>
+    <string name="nombre_sala">Room name</string>
+    <string name="bt_checking">[BT: CHECKING...]</string>
+    <string name="bt_enabled">[BT: ENABLED]</string>
+    <string name="bluetooth_scan">BLUETOOTH SCAN</string>
+    <string name="tap_to_connect">TAP TO CONNECT</string>
+    <string name="reset">RESET</string>
+    
+    <!-- GameActivity strings -->
+    <string name="server_mode_your_turn">[SERVER MODE - YOUR TURN]</string>
+    <string name="client_mode_waiting">[CLIENT MODE - WAITING]</string>
+    <string name="server_error_permiso">[SERVER ERROR: BT CONNECT PERMISSION]</string>
+    <string name="server_waiting_client">[SERVER: WAITING FOR CLIENT...]</string>
+    <string name="client_connected">[CLIENT CONNECTED]</string>
+    <string name="server_error">[SERVER ERROR]</string>
+    <string name="client_error_permiso">[CLIENT ERROR: BT CONNECT PERMISSION]</string>
+    <string name="client_connecting">[CLIENT: CONNECTING...]</string>
+    <string name="connected">[CONNECTED]</string>
+    <string name="connection_failed">[CONNECTION FAILED]</string>
+    <string name="juego_reiniciado">[GAME RESET]</string>
+    <string name="rematch_aceptado_start">[REMATCH ACCEPTED - START!]</string>
+    <string name="disconnected">[DISCONNECTED]</string>
+    <string name="your_turn">[YOUR TURN]</string>
+    <string name="send_error">[SEND ERROR]</string>
+    <string name="waiting">[WAITING...]</string>
+    <string name="start_your_turn">[START - YOUR TURN]</string>
+    <string name="start_rival_turn">[START - RIVAL TURN]</string>
+    <string name="rematch_solicitado_esperando">[REMATCH REQUESTED - WAITING...]</string>
+    <string name="error_enviar_revancha">[ERROR SENDING REMATCH]</string>
+    <string name="error_aceptar_revancha">[ERROR ACCEPTING REMATCH]</string>
+    <string name="ganaste">YOU WON</string>
+    <string name="perdiste">YOU LOST</string>
+    <string name="empate">TIE</string>
+    <string name="fin_del_juego">GAME OVER</string>
+    <string name="mensaje_ganaste">Congratulations! You won the game.</string>
+    <string name="mensaje_perdiste">Sorry, you lost the game.</string>
+    <string name="mensaje_empate">It\'s a tie! No one won this game.</string>
+    <string name="revancha_o_salir">Rematch or exit?</string>
+    <string name="revancha">Rematch</string>
+    <string name="salir">Exit</string>
+    <string name="revancha_titulo">REMATCH</string>
+    <string name="revancha_mensaje">The rival wants a rematch.\nAccept?</string>
+    <string name="aceptar">Accept</string>
+    
+    <!-- Toast messages -->
+    <string name="bluetooth_no_soportado_toast">Bluetooth not supported</string>
+    <string name="permisos_requeridos">Permissions required</string>
+    <string name="bluetooth_no_habilitado_toast">Bluetooth not enabled</string>
+    <string name="dispositivo_descubrible">The device must be discoverable for others to find it</string>
+    <string name="permiso_requerido">Permission required</string>
+    
+    <!-- Language selector -->
+    <string name="cambiar_idioma">ES</string>
+    <string name="language_english">English</string>
+    <string name="language_spanish">Español</string>
+</resources>
+

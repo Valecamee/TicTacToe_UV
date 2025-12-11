@@ -14,6 +14,20 @@
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
+    <!-- Selector de idioma arriba a la izquierda -->
+    <Button
+        android:id="@+id/buttonLanguage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cambiar_idioma"
+        android:textSize="14sp"
+        android:textColor="@color/cyberpunk_cyan"
+        android:fontFamily="monospace"
+        android:backgroundTint="@android:color/transparent"
+        android:layout_gravity="start|top"
+        android:layout_margin="8dp"
+        android:onClick="cambiarIdioma"/>
+
     <!-- Título principal con efecto glow -->
     <TextView
         android:layout_width="match_parent"
@@ -92,6 +106,16 @@
                 android:fontFamily="monospace"
                 android:buttonTint="@color/cyberpunk_cyan"
                 android:padding="12dp"/>
+                <EditText
+                    android:id="@+id/editRoomName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/nombre_sala"
+                    android:visibility="gone"
+                    android:textColorHint="@color/text_secondary"
+                    android:textColor="@color/text_primary"
+                    android:backgroundTint="@color/cyberpunk_cyan" />
+
 
             <RadioButton
                 android:id="@+id/radioButtonCliente"
@@ -135,7 +159,7 @@
         android:id="@+id/textBtStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="[BT: CHECKING...]"
+        android:text="@string/bt_checking"
         android:textSize="14sp"
         android:textColor="@color/cyberpunk_yellow"
         android:fontFamily="monospace"
